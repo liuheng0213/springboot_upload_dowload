@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--这里的loacation是你连接数据库的jar包，可以从项目依赖里面找-->
+    <classPathEntry location="D:\openSources\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar"/>
+    <context id="context1">
+
+        <!-- 是否生成注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接，数据库版本高的话需要添加时区serverTimezone=GMT%2B8 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/excel_handler?serverTimezone=GMT%2B8"
+                        userId="stephen" password="83603919" />
+
+        <!-- 生成的包名和工程名 -->
+        <javaModelGenerator targetPackage="com.stephen.entity"
+                            targetProject="src/main/java/"/>
+        <!-- xml映射文件   -->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources/" />
+        <!--  mapper接口    -->
+        <javaClientGenerator targetPackage="com.stephen.mapper"
+                             targetProject="src/main/java/" type="XMLMAPPER" />
+
+        <!-- 数据库表 以及是否生成example,可以同时生成多个-->
+        <table  tableName="user" domainObjectName="User"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false">
+
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <!--<table  tableName="tb_user" domainObjectName="User"
+                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false" />-->
+    </context>
+</generatorConfiguration>
