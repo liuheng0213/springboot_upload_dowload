@@ -5,6 +5,7 @@ import com.stephen.entity.User;
 import com.stephen.service.ILogService;
 import com.stephen.util.DateUtil;
 import com.stephen.util.ExcelUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -38,8 +39,7 @@ public class UploadController {
     public static final String UPLOAD = "upload";
     private static final String DOWNLOAD = "download";
 
-    @Autowired
-    private ServletContext servletContext;
+
 
     @Autowired
     ILogService logService;
@@ -72,7 +72,7 @@ public class UploadController {
             return "上传失败，请选择文件";
         }
         try {
-            String rootPath = servletContext.getRealPath("/");
+            String rootPath = this.getClass().getResource("/").getPath();
             String fileName = file.getOriginalFilename();
             String upPath = rootPath + "//upload//";
             String doPath = rootPath + "//download//";

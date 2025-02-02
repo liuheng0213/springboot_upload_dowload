@@ -12,8 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
  * @Date 2018-05-15 14:03
  */
 @SpringBootApplication
-@EnableAutoConfiguration
-@ComponentScan
+//@EnableAutoConfiguration
+//@ComponentScan
 @MapperScan("com.stephen.mapper")
 public class Application {
     public static void main(String[] args) {
